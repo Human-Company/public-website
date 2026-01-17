@@ -6,13 +6,13 @@ export default function Home() {
 
           {/* Sidebar */}
           <aside className="lg:w-[140px] flex-shrink-0 mb-6 lg:mb-0">
-            <div className="lg:fixed lg:w-[140px] flex flex-col">
+            <div className="flex flex-row justify-between items-center lg:fixed lg:w-[140px] lg:flex-col lg:items-start lg:justify-start">
               {/* Brand Name */}
               <div className="font-semibold text-[15px] text-[#1a1a1a]">
                 Human Company
               </div>
               {/* Nav */}
-              <nav className="flex flex-col text-[15px] text-stone-500 mt-1">
+              <nav className="flex flex-col text-[15px] text-stone-500 lg:mt-1">
                 <a href="#" className="hover:text-[#1a1a1a] transition-colors">Contact</a>
               </nav>
             </div>
