@@ -1,12 +1,12 @@
 export default function Home() {
   return (
     <div className="min-h-screen flex justify-center bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200">
-      <div className="max-w-[900px] w-full mx-auto px-6 md:px-12 pt-[280px] pb-32">
-        <div className="flex flex-col md:flex-row md:gap-[80px]">
+      <div className="max-w-[900px] w-full mx-auto px-6 lg:px-12 pt-32 lg:pt-[280px] pb-32">
+        <div className="flex flex-col lg:flex-row lg:gap-[80px]">
 
           {/* Sidebar */}
-          <aside className="md:w-[140px] flex-shrink-0">
-            <div className="md:fixed md:w-[140px] flex flex-col">
+          <aside className="lg:w-[140px] flex-shrink-0 mb-12 lg:mb-0">
+            <div className="lg:fixed lg:w-[140px] flex flex-col">
               {/* Brand Name */}
               <div className="font-semibold text-[15px] text-[#1a1a1a]">
                 Human Company
@@ -19,15 +19,15 @@ export default function Home() {
           </aside>
 
           {/* Main Content */}
-          <main className="flex-1 max-w-[480px] mt-8 md:mt-0">
-          <div className="flex flex-col gap-[80px] pb-32">
+          <main className="flex-1 max-w-[480px]">
+          <div className="flex flex-col gap-[64px] pb-32">
             {/* Title Section */}
             <section>
-              <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[40px] text-[#1a1a1a]">
+              <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
                 RL infrastructure<br />
                 for agent training
               </h1>
-              <div className="space-y-[24px] text-[17px] leading-[1.6] text-stone-500">
+              <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">
                 <p>
                   We believe in a future where agents are lifelike. They will see, hear, and collaborate with us. RL infrastructure is key to unlocking this future.
                 </p>
@@ -40,7 +40,7 @@ export default function Home() {
             <hr className="border-stone-300 w-full" />
 
             {/* Section 01 */}
-            <section className="space-y-[12px]">
+            <section className="space-y-[10px]">
               <span className="text-[14px] leading-[20px] text-stone-400 block">01</span>
               <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">A scalable foundation</h2>
               <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
@@ -49,7 +49,7 @@ export default function Home() {
             </section>
 
             {/* Section 02 */}
-            <section className="space-y-[12px]">
+            <section className="space-y-[10px]">
               <span className="text-[14px] leading-[20px] text-stone-400 block">02</span>
               <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Human-aligned reward models</h2>
               <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
