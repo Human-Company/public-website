@@ -20,46 +20,47 @@ export default function Home() {
 
           {/* Main Content */}
           <main className="flex-1 max-w-[480px]">
-          <div className="flex flex-col gap-[64px] pb-32">
-            {/* Title Section */}
-            <section>
-              <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
-                RL infrastructure<br />
-                for agent training
-              </h1>
-              <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">
-                <p>
-                  We believe in a future where agents are lifelike. They will see, hear, and collaborate with us. RL infrastructure is key to unlocking this future.
+            <div className="flex flex-col gap-[64px] pb-32">
+              {/* Title Section */}
+              <section>
+                <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
+                  RL infrastructure<br />
+                  for agent training
+                </h1>
+                <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">
+                  <p>
+                    We believe in a future where agents are lifelike. They will see, hear, and collaborate with us. RL infrastructure is key to unlocking this future.
+                  </p>
+                  <p className="font-medium text-[17px] leading-[1.6] text-[#1a1a1a]">
+                    To start, we have two goals.
+                  </p>
+                </div>
+              </section>
+
+              <hr className="border-stone-300 w-full" />
+
+              {/* Section 01 */}
+              <section className="space-y-[10px]">
+                <span className="text-[14px] leading-[20px] text-stone-400 block">01</span>
+                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">A scalable foundation</h2>
+                <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
+                  Building the training grounds for the next generation of AI. Our infrastructure enables massive-scale reinforcement learning environments that mimic the complexity of the real world.
                 </p>
-                <p className="font-medium text-[17px] leading-[1.6] text-[#1a1a1a]">
-                  To start, we have two goals.
+              </section>
+
+              {/* Section 02 */}
+              <section className="space-y-[10px]">
+                <span className="text-[14px] leading-[20px] text-stone-400 block">02</span>
+                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Human-aligned reward models</h2>
+                <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
+                  Ensuring that agents learn from human feedback effectively. We are developing novel algorithms to align agent behavior with human intent through natural interaction.
                 </p>
-              </div>
-            </section>
 
-            <hr className="border-stone-300 w-full" />
-
-            {/* Section 01 */}
-            <section className="space-y-[10px]">
-              <span className="text-[14px] leading-[20px] text-stone-400 block">01</span>
-              <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">A scalable foundation</h2>
-              <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
-                Building the training grounds for the next generation of AI. Our infrastructure enables massive-scale reinforcement learning environments that mimic the complexity of the real world.
-              </p>
-            </section>
-
-            {/* Section 02 */}
-            <section className="space-y-[10px]">
-              <span className="text-[14px] leading-[20px] text-stone-400 block">02</span>
-              <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Human-aligned reward models</h2>
-              <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
-                Ensuring that agents learn from human feedback effectively. We are developing novel algorithms to align agent behavior with human intent through natural interaction.
-              </p>
-              <p className="text-stone-500 text-[16px] leading-[1.6]">
-                Try our research <a href="#" className="text-[#1a1a1a] underline underline-offset-2 hover:text-stone-600 transition-colors">preview</a>.
-              </p>
-            </section>
-          </div>
+                <p className="text-stone-500 text-[16px] leading-[1.6]">
+                  Contact us at <a href="mailto:amar@thehumancompany.ai" className="text-[#1a1a1a] underline underline-offset-2 hover:text-stone-600 transition-colors">amar@thehumancompany.ai</a>.
+                </p>
+              </section>
+            </div>
           </main>
         </div>
       </div>
