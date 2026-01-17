@@ -1,28 +1,28 @@
-# Connecting `thehumancompany.ai`
+# How to Switch to `thehumancompany.ai`
 
-Since your website is a Next.js application, the easiest way to connect your domain is by deploying to **Vercel**.
+No problem! It's easy to switch the connected domain.
 
-## Step 1: Push to GitHub
-1. Create a repository on GitHub.
-2. Push your code:
-   ```bash
-   git add .
-   git commit -m "Initial launch"
-   git branch -M main
-   git remote add origin <your-repo-url>
-   git push -u origin main
-   ```
+## Step 1: Update Vercel
+1.  Go to **Vercel** > **Settings** > **Domains**.
+2.  Enter `thehumancompany.ai` and click **Add**.
+3.  (Optional) You can delete `theappcompany.ai` from the list.
 
-## Step 2: Deploy to Vercel
-1. Go to [vercel.com](https://vercel.com) and log in.
-2. Click **"Add New..."** -> **"Project"**.
-3. Import your `humancompany-website` repository.
-4. Click **Deploy**.
+## Step 2: Configure Cloudflare
+1.  Go to **Cloudflare** and select **`thehumancompany.ai`**.
+2.  Go to **DNS** > **Records**.
+3.  Add the following two records (or edit them if they exist):
 
-## Step 3: Connect Domain
-1. Once deployed, go to your project **Settings** -> **Domains**.
-2. Enter `thehumancompany.ai` and click **Add**.
-3. Vercel will give you DNS records (A Record and CNAME).
-4. Go to your domain registrar (where you bought the domain) and add these records.
+### Record 1 (Root)
+*   **Type:** `A`
+*   **Name:** `@`
+*   **IPv4 address:** `76.76.21.21`
+*   **Proxy status:** **DNS Only** (Grey Cloud)
 
-Your site will be live at `https://thehumancompany.ai` shortly after!
+### Record 2 (WWW)
+*   **Type:** `CNAME`
+*   **Name:** `www`
+*   **Target:** `cname.vercel-dns.com`
+*   **Proxy status:** **DNS Only** (Grey Cloud)
+
+## Step 3: Done
+Vercel should show the blue checks for `thehumancompany.ai` within a minute or two.
