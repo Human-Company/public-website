@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <div className="min-h-screen flex justify-center bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200">
-      <div className="max-w-[900px] w-full mx-auto px-6 lg:px-12 pt-8 lg:pt-[280px] pb-32">
+      <div className="max-w-[900px] w-full mx-auto px-6 lg:px-12 pt-12 lg:pt-[280px] pb-32">
         <div className="flex flex-col lg:flex-row lg:gap-[80px]">
 
           {/* Sidebar */}
