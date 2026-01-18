@@ -5,7 +5,7 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row lg:gap-[80px]">
 
           {/* Sidebar */}
-          <aside className="lg:w-[140px] flex-shrink-0 mb-6 lg:mb-0">
+          <aside className="lg:w-[140px] flex-shrink-0 mb-16 lg:mb-0">
             <div className="flex flex-row justify-between items-center lg:fixed lg:w-[140px] lg:flex-col lg:items-start lg:justify-start">
               {/* Brand Name */}
               <div className="font-semibold text-[15px] text-[#1a1a1a]">
