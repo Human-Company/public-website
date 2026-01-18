@@ -13,7 +13,7 @@ export default function AboutPage() {
         // --- Setup Scene ---
         const scene = new THREE.Scene();
         scene.background = new THREE.Color('#F5F5F0');
-        scene.fog = new THREE.FogExp2(0xF5F5F0, 0.025);
+        scene.fog = new THREE.FogExp2(0xF5F5F0, 0.002);
 
         // --- Camera (Isometric) ---
         // Orthographic is key for the "pixel art" / "simulation" look
@@ -41,7 +41,7 @@ export default function AboutPage() {
                 ctx.clearRect(0, 0, 128, 128);
                 // Use a very heavy font to make the 0/1 readable when small
                 ctx.font = '900 100px "Courier New", monospace';
-                ctx.fillStyle = '#1A1A1A'; // Dark text directly
+                ctx.fillStyle = '#000000'; // Pure black text
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(char, 64, 64);
@@ -193,12 +193,11 @@ export default function AboutPage() {
             // Let's use sizeAttenuation: true and scale it appropriately.
         });
         
-        // Actually, for crisp pixel art look, let's try sizeAttenuation: false (pixels)
-        // and make them small but dense.
-        material.size = 12; // 12 screen pixels
-        material.sizeAttenuation = false;
-        material.color = new THREE.Color(0xFFFFFF); 
-        material.map = tex0;
+                // Actually, for crisp pixel art look, let's try sizeAttenuation: false (pixels)
+                // and make them small but dense.
+                material.size = 24; // 24 screen pixels
+                material.sizeAttenuation = false;
+                material.color = new THREE.Color(0xFFFFFF);          material.map = tex0;
         material.alphaTest = 0.5; // Sharp cutout
 
         // --- Shaders ---
