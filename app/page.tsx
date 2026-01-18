@@ -21,14 +21,12 @@ export default function Home() {
           {/* Main Content */}
           <main className="flex-1 max-w-[480px]">
             <div className="flex flex-col gap-[64px] pb-32">
-              {/* Title Section */}
-              <section>
-                <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
-                  RL infrastructure<br />
-                  for agent training
-                </h1>
-                <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">
-                  <p>
+                          {/* Title Section */}
+                          <section>
+                            <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
+                              Humans won’t judge intelligence. They’ll define the work that creates it.
+                            </h1>
+                            <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">                  <p>
                     We believe in a future where agents are lifelike. They will see, hear, and collaborate with us. RL infrastructure is key to unlocking this future.
                   </p>
                   <p className="font-medium text-[17px] leading-[1.6] text-[#1a1a1a]">
