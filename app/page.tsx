@@ -5,7 +5,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200 flex items-center justify-center p-6 lg:p-24">
       <div className="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-12 items-start">
         {/* Left Sidebar - Header & Nav */}
-        <div className="flex flex-col gap-1 text-[15px] sticky top-24">
+        <div className="flex flex-col gap-1 text-[15px] lg:sticky lg:top-24">
           <div className="font-bold mb-1">Human Company</div>
           <nav className="flex flex-col gap-1">
             <Link href="/about" className="opacity-50 hover:opacity-100 transition-opacity">About</Link>
