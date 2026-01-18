@@ -11,34 +11,10 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 px-6 pt-12 lg:pt-16 pb-32">
         <div className="max-w-[600px]">
-          <div className="space-y-8 text-[17px] lg:text-[18px] leading-[1.7] text-[#1a1a1a]">
+          <div className="space-y-6 text-[17px] lg:text-[18px] leading-[1.7] text-[#1a1a1a]">
             <p>
-              We build things, typically with code. We believe progress in AI will come from encoding real work into environments where agents can learn.
+              We believe progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
             </p>
-            <p>
-              As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
-            </p>
-            <p>
-              To act on this belief, we focus on two concrete responsibilities.
-            </p>
-
-            {/* Section 01 */}
-            <section className="space-y-2">
-              <span className="text-[14px] text-stone-400 block">01</span>
-              <h2 className="text-[18px] font-medium text-[#1a1a1a]">Environments</h2>
-              <p className="text-[17px] lg:text-[18px] leading-[1.7]">
-                Real work, formalized. We encode economically valuable tasks into high-fidelity training environments where agents learn by doing—starting with software engineering.
-              </p>
-            </section>
-
-            {/* Section 02 */}
-            <section className="space-y-2">
-              <span className="text-[14px] text-stone-400 block">02</span>
-              <h2 className="text-[18px] font-medium text-[#1a1a1a]">Curricula</h2>
-              <p className="text-[17px] lg:text-[18px] leading-[1.7]">
-                Tasks drawn from real economic activity—the work that matters, turned into high quality training signal.
-              </p>
-            </section>
           </div>
         </div>
       </main>
