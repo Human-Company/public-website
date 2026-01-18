@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200 flex items-start lg:items-center justify-center px-6 pt-32 pb-12 lg:p-24">
+    <div className="min-h-screen bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200 flex items-start lg:items-center justify-center px-6 pt-24 pb-12 lg:p-24">
       <div className="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-12 items-start">
         {/* Left Sidebar - Header & Nav */}
         <div className="flex flex-col gap-1 text-[15px] lg:sticky lg:top-24">
