@@ -15,7 +15,7 @@ export default function Home() {
 
         {/* Main Content */}
         <div className="max-w-[450px]">
-          <h1 className="font-[family-name:var(--font-playfair)] text-[24px] lg:text-[30px] leading-[1.2] font-normal text-[#1a1a1a] mb-10">
+          <h1 className="font-[family-name:var(--font-playfair)] text-[32px] lg:text-[36px] leading-[1.15] font-normal text-[#1a1a1a] mb-10 max-w-[280px] lg:max-w-none">
             Humans won't judge intelligence. They'll define the work that creates it.
           </h1>
           <div className="space-y-8 text-[15px] lg:text-[16px] leading-[1.7] text-[#1a1a1a]/80">
