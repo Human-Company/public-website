@@ -13,13 +13,7 @@ export default function Home() {
         <div className="max-w-[600px]">
           <div className="space-y-6 text-[17px] lg:text-[18px] leading-[1.7] text-[#1a1a1a]">
             <p>
-              We build things, typically with code. We believe progress in AI will come from encoding real work into environments where agents can learn.
-            </p>
-            <p>
-              As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
-            </p>
-            <p>
-              To act on this belief, we focus on two concrete responsibilities: building high-fidelity training environments where agents learn by doing, and creating curricula drawn from real economic activity.
+              We believe progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
             </p>
           </div>
         </div>
