@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200">
@@ -45,7 +47,13 @@ export default function Home() {
 
       {/* Bottom Navigation */}
       <nav className="fixed bottom-0 left-0 right-0 bg-[#f5f5f0] border-t border-stone-200">
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 flex gap-6">
+          <Link
+            href="/about"
+            className="text-[15px] text-[#1a1a1a] font-medium hover:text-stone-500 transition-colors"
+          >
+            About
+          </Link>
           <a
             href="mailto:amar@thehumancompany.ai"
             className="text-[15px] text-[#1a1a1a] font-medium hover:text-stone-500 transition-colors"
