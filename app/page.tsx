@@ -11,6 +11,9 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 px-6 pt-12 lg:pt-16 pb-32">
         <div className="max-w-[600px]">
+          <h1 className="font-[family-name:var(--font-playfair)] text-[28px] lg:text-[36px] leading-[1.2] font-normal text-[#1a1a1a] mb-10">
+            Humans won't judge intelligence. They'll define the work that creates it.
+          </h1>
           <div className="space-y-8 text-[17px] lg:text-[18px] leading-[1.7] text-[#1a1a1a]">
             <p>
               We believe progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
