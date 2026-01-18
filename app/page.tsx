@@ -28,7 +28,7 @@ export default function Home() {
 
             {/* Section 01 */}
             <section className="space-y-2">
-              <div className="flex gap-4 items-baseline">
+              <div className="flex gap-3 lg:gap-4 items-baseline">
                 <span className="text-[14px] text-stone-400">01</span>
                 <h2 className="text-[16px] font-medium text-[#1a1a1a]">Environments</h2>
               </div>
@@ -39,7 +39,7 @@ export default function Home() {
 
             {/* Section 02 */}
             <section className="space-y-2">
-              <div className="flex gap-4 items-baseline">
+              <div className="flex gap-3 lg:gap-4 items-baseline">
                 <span className="text-[14px] text-stone-400">02</span>
                 <h2 className="text-[16px] font-medium text-[#1a1a1a]">Curricula</h2>
               </div>
