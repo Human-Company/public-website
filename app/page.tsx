@@ -2,66 +2,54 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200">
-      {/* Header */}
-      <header className="px-6 pt-8 lg:pt-12">
-        <div className="font-semibold text-[15px] text-[#1a1a1a]">
-          Human Company
+    <div className="min-h-screen bg-[#f5f5f0] text-[#1a1a1a] font-sans selection:bg-stone-200 flex items-center justify-center p-6 lg:p-24">
+      <div className="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-12 items-start">
+        {/* Left Sidebar - Header & Nav */}
+        <div className="flex flex-col gap-1 text-[15px] sticky top-24">
+          <div className="font-bold mb-1">Human Company</div>
+          <nav className="flex flex-col gap-1">
+            <Link href="/about" className="opacity-50 hover:opacity-100 transition-opacity">About</Link>
+            <a href="mailto:amar@thehumancompany.ai" className="opacity-50 hover:opacity-100 transition-opacity">Contact</a>
+          </nav>
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 px-6 pt-12 lg:pt-16 pb-32">
-        <div className="max-w-[600px]">
-          <h1 className="font-[family-name:var(--font-playfair)] text-[28px] lg:text-[36px] leading-[1.2] font-normal text-[#1a1a1a] mb-10">
+        {/* Main Content */}
+        <div className="max-w-[450px]">
+          <h1 className="font-[family-name:var(--font-playfair)] text-[24px] lg:text-[30px] leading-[1.2] font-normal text-[#1a1a1a] mb-10">
             Humans won't judge intelligence. They'll define the work that creates it.
           </h1>
-          <div className="space-y-8 text-[17px] lg:text-[18px] leading-[1.7] text-[#1a1a1a]">
+          <div className="space-y-8 text-[16px] leading-[1.7] text-[#1a1a1a]">
             <p>
-              We believe progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
+              Progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
             </p>
             <p>
-              To act on this belief, we focus on two concrete responsibilities.
+              This drives two areas of focus.
             </p>
 
             {/* Section 01 */}
             <section className="space-y-2">
-              <span className="text-[14px] text-stone-400 block">01</span>
-              <h2 className="text-[18px] font-medium text-[#1a1a1a]">Environments</h2>
-              <p className="text-[17px] lg:text-[18px] leading-[1.7]">
+              <div className="flex gap-4 items-baseline">
+                <span className="text-[14px] text-stone-400">01</span>
+                <h2 className="text-[16px] font-medium text-[#1a1a1a]">Environments</h2>
+              </div>
+              <p className="text-[16px] leading-[1.7]">
                 Real work, formalized. We encode economically valuable tasks into high-fidelity training environments where agents learn by doing—starting with software engineering.
               </p>
             </section>
 
             {/* Section 02 */}
             <section className="space-y-2">
-              <span className="text-[14px] text-stone-400 block">02</span>
-              <h2 className="text-[18px] font-medium text-[#1a1a1a]">Curricula</h2>
-              <p className="text-[17px] lg:text-[18px] leading-[1.7]">
+              <div className="flex gap-4 items-baseline">
+                <span className="text-[14px] text-stone-400">02</span>
+                <h2 className="text-[16px] font-medium text-[#1a1a1a]">Curricula</h2>
+              </div>
+              <p className="text-[16px] leading-[1.7]">
                 Tasks drawn from real economic activity—the work that matters, turned into high quality training signal.
               </p>
             </section>
           </div>
         </div>
-      </main>
-
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 bg-[#f5f5f0] border-t border-stone-200">
-        <div className="px-6 py-4 flex gap-6">
-          <Link
-            href="/about"
-            className="text-[15px] text-[#1a1a1a] font-medium hover:text-stone-500 transition-colors"
-          >
-            About
-          </Link>
-          <a
-            href="mailto:amar@thehumancompany.ai"
-            className="text-[15px] text-[#1a1a1a] font-medium hover:text-stone-500 transition-colors"
-          >
-            Contact
-          </a>
-        </div>
-      </nav>
+      </div>
     </div>
   );
 }
