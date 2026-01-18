@@ -12,12 +12,17 @@ export default function AboutPage() {
 
         // --- Setup Scene ---
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color('#F5F5F0'); // Matching the site bg
-        scene.fog = new THREE.FogExp2(0xF5F5F0, 0.015);
+        scene.background = new THREE.Color('#F5F5F0');
+        scene.fog = new THREE.FogExp2(0xF5F5F0, 0.025);
 
-        // --- Camera ---
-        const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.set(35, 35, 35);
+        // --- Camera (Isometric) ---
+        // Orthographic is key for the "pixel art" / "simulation" look
+        const aspect = window.innerWidth / window.innerHeight;
+        const d = 35; // View size
+        const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 1000);
+        
+        // Classic isometric angle: look from corner
+        camera.position.set(50, 50, 50); 
         camera.lookAt(0, 0, 0);
 
         // --- Renderer ---
@@ -26,16 +31,17 @@ export default function AboutPage() {
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         containerRef.current.appendChild(renderer.domElement);
 
-        // --- Textures (Data Characters) ---
+        // --- Textures (High Res for crisp downscaling) ---
         const createCharTexture = (char: string) => {
             const canvas = document.createElement('canvas');
-            canvas.width = 128;
+            canvas.width = 128; 
             canvas.height = 128;
             const ctx = canvas.getContext('2d');
             if (ctx) {
                 ctx.clearRect(0, 0, 128, 128);
-                ctx.font = 'bold 96px "Courier New", monospace';
-                ctx.fillStyle = '#FFFFFF';
+                // Use a very heavy font to make the 0/1 readable when small
+                ctx.font = '900 100px "Courier New", monospace';
+                ctx.fillStyle = '#1A1A1A'; // Dark text directly
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillText(char, 64, 64);
@@ -46,85 +52,156 @@ export default function AboutPage() {
         const tex0 = createCharTexture('0');
         const tex1 = createCharTexture('1');
 
-        // --- Geometry Construction ---
-        const agentGeo0 = new THREE.BufferGeometry();
-        const agentGeo1 = new THREE.BufferGeometry();
-        const staticGeo0 = new THREE.BufferGeometry();
-        const staticGeo1 = new THREE.BufferGeometry();
+        // --- Geometry Arrays ---
+        const agentPos: number[] = [];
+        const agentOffsets: number[] = []; // ID for movement
+        const agentType: number[] = [];    // 0 or 1 for texture
 
-        const agentPos0: number[] = [];
-        const agentPos1: number[] = [];
-        const staticPos0: number[] = [];
-        const staticPos1: number[] = [];
-        const agentOffsets0: number[] = [];
-        const agentOffsets1: number[] = [];
+        const staticPos: number[] = [];
+        const staticType: number[] = [];   // 0 or 1
 
-        // 1. Create Agents
-        const createAgent = (x: number, z: number, id: number) => {
-            const particleCount = 12; 
-            for (let i = 0; i < particleCount; i++) {
-                const px = x + (Math.random() - 0.5) * 1.5;
-                const py = Math.random() * 2.5;
-                const pz = z + (Math.random() - 0.5) * 1.5;
+        // --- Voxel/Particle Helpers ---
+        // Create a solid-ish block of particles
+        const fillBlock = (
+            cx: number, cy: number, cz: number, 
+            wx: number, wy: number, wz: number, 
+            density: number, 
+            isAgent: boolean, 
+            id: number = 0
+        ) => {
+            const count = Math.floor(wx * wy * wz * density);
+            for(let i=0; i<count; i++) {
+                const px = cx + (Math.random() - 0.5) * wx;
+                const py = cy + (Math.random() - 0.5) * wy;
+                const pz = cz + (Math.random() - 0.5) * wz;
 
-                if (Math.random() > 0.5) {
-                    agentPos1.push(px, py, pz);
-                    agentOffsets1.push(id);
+                const type = Math.random() > 0.5 ? 1 : 0;
+                
+                if (isAgent) {
+                    agentPos.push(px, py, pz);
+                    agentOffsets.push(id);
+                    agentType.push(type);
                 } else {
-                    agentPos0.push(px, py, pz);
-                    agentOffsets0.push(id);
+                    staticPos.push(px, py, pz);
+                    staticType.push(type);
                 }
             }
         };
 
-        for (let i = 0; i < 80; i++) {
-            createAgent((Math.random() - 0.5) * 50, (Math.random() - 0.5) * 50, i);
+        // --- 1. Create Agents ("Thronglets") ---
+        // Density must be high to define the shape
+        const agentCount = 50;
+        for (let i = 0; i < agentCount; i++) {
+            const x = (Math.random() - 0.5) * 50;
+            const z = (Math.random() - 0.5) * 50;
+            
+            // Head
+            fillBlock(x, 2.8, z, 1.2, 1.0, 1.2, 8, true, i); 
+            // Body
+            fillBlock(x, 1.5, z, 1.0, 1.5, 1.0, 10, true, i);
+            // Arms (scattered slightly out)
+            fillBlock(x, 1.8, z, 2.0, 0.6, 0.6, 6, true, i);
         }
 
-        // 2. Create Trees
-        const createTree = (x: number, z: number) => {
-            for(let y=0; y<4; y+=0.6) {
-                 if (Math.random() > 0.5) staticPos1.push(x, y, z);
-                 else staticPos0.push(x, y, z);
-            }
-            const leafCount = 40;
-            for(let i=0; i<leafCount; i++) {
-                const r = 2.5 * Math.pow(Math.random(), 0.5);
-                const theta = Math.random() * Math.PI * 2;
-                const phi = Math.acos(2 * Math.random() - 1);
-                const lx = x + r * Math.sin(phi) * Math.cos(theta);
-                const ly = 5.0 + r * Math.sin(phi) * Math.sin(theta);
-                const lz = z + r * Math.cos(phi);
-                if (Math.random() > 0.5) staticPos1.push(lx, ly, lz);
-                else staticPos0.push(lx, ly, lz);
-            }
-        };
+        // --- 2. Create Environment (Trees) ---
+        const treeCount = 20;
+        for (let i = 0; i < treeCount; i++) {
+            const x = (Math.random() - 0.5) * 60;
+            const z = (Math.random() - 0.5) * 60;
+            // Clear center
+            if (Math.abs(x) < 10 && Math.abs(z) < 10) continue;
 
-        for (let i = 0; i < 30; i++) {
-             const x = (Math.random() - 0.5) * 60;
-             const z = (Math.random() - 0.5) * 60;
-             if (Math.abs(x) < 8 && Math.abs(z) < 8) continue;
-             createTree(x, z);
+            // Trunk (tall, thin)
+            fillBlock(x, 2.0, z, 0.8, 4.0, 0.8, 15, false);
+            
+            // Leaves (Multiple layers of blocks for "voxel" tree look)
+            fillBlock(x, 5.0, z, 4.0, 1.5, 4.0, 10, false); // Base
+            fillBlock(x, 6.0, z, 3.0, 1.5, 3.0, 12, false); // Mid
+            fillBlock(x, 7.0, z, 1.5, 1.0, 1.5, 15, false); // Top
         }
 
-        agentGeo0.setAttribute('position', new THREE.Float32BufferAttribute(agentPos0, 3));
-        agentGeo0.setAttribute('agentId', new THREE.Float32BufferAttribute(agentOffsets0, 1));
-        agentGeo1.setAttribute('position', new THREE.Float32BufferAttribute(agentPos1, 3));
-        agentGeo1.setAttribute('agentId', new THREE.Float32BufferAttribute(agentOffsets1, 1));
-        staticGeo0.setAttribute('position', new THREE.Float32BufferAttribute(staticPos0, 3));
-        staticGeo1.setAttribute('position', new THREE.Float32BufferAttribute(staticPos1, 3));
+        // --- 3. Ground (Scattered Grid) ---
+        // Instead of random, use a grid pattern with noise to look like terrain
+        const gridSize = 80;
+        const step = 1.5;
+        for (let x = -gridSize/2; x < gridSize/2; x+=step) {
+            for (let z = -gridSize/2; z < gridSize/2; z+=step) {
+                // Noise-like patches
+                if (Math.random() > 0.7) continue; 
+                
+                const type = Math.random() > 0.5 ? 1 : 0;
+                staticPos.push(x, 0, z);
+                staticType.push(type);
+                
+                // Add some "grass" height occasionally
+                if (Math.random() > 0.9) {
+                     staticPos.push(x, 0.5, z);
+                     staticType.push(type);
+                }
+            }
+        }
+
+        // --- Build Buffers ---
+        // We need to split into 0s and 1s for the textures
+        const agentPos0: number[] = [], agentPos1: number[] = [];
+        const agentOff0: number[] = [], agentOff1: number[] = [];
+        const staticPos0: number[] = [], staticPos1: number[] = [];
+
+        // Split Agents
+        for(let i=0; i<agentPos.length; i+=3) {
+             const idx = i/3;
+             const t = agentType[idx];
+             if (t === 1) {
+                 agentPos1.push(agentPos[i], agentPos[i+1], agentPos[i+2]);
+                 agentOff1.push(agentOffsets[idx]);
+             } else {
+                 agentPos0.push(agentPos[i], agentPos[i+1], agentPos[i+2]);
+                 agentOff0.push(agentOffsets[idx]);
+             }
+        }
+        // Split Static
+        for(let i=0; i<staticPos.length; i+=3) {
+             const idx = i/3;
+             const t = staticType[idx];
+             if (t === 1) staticPos1.push(staticPos[i], staticPos[i+1], staticPos[i+2]);
+             else staticPos0.push(staticPos[i], staticPos[i+1], staticPos[i+2]);
+        }
+
+        const geoAgent0 = new THREE.BufferGeometry();
+        geoAgent0.setAttribute('position', new THREE.Float32BufferAttribute(agentPos0, 3));
+        geoAgent0.setAttribute('agentId', new THREE.Float32BufferAttribute(agentOff0, 1));
+
+        const geoAgent1 = new THREE.BufferGeometry();
+        geoAgent1.setAttribute('position', new THREE.Float32BufferAttribute(agentPos1, 3));
+        geoAgent1.setAttribute('agentId', new THREE.Float32BufferAttribute(agentOff1, 1));
+
+        const geoStatic0 = new THREE.BufferGeometry();
+        geoStatic0.setAttribute('position', new THREE.Float32BufferAttribute(staticPos0, 3));
+        
+        const geoStatic1 = new THREE.BufferGeometry();
+        geoStatic1.setAttribute('position', new THREE.Float32BufferAttribute(staticPos1, 3));
+
 
         // --- Materials ---
-        const baseMaterial = new THREE.PointsMaterial({
-            size: 1.2,
+        // Small, sharp, opaque-ish particles
+        const material = new THREE.PointsMaterial({
+            size: 0.6, // Relative to ortho view
             transparent: true,
-            opacity: 0.9,
-            color: 0x1A1A1A,
-            sizeAttenuation: true,
-            depthWrite: false,
-            alphaTest: 0.05,
+            opacity: 1.0,
+            color: 0xFFFFFF, // Use texture color
+            sizeAttenuation: false, // In Ortho this means pixel size?
+            // Let's use sizeAttenuation: true and scale it appropriately.
         });
+        
+        // Actually, for crisp pixel art look, let's try sizeAttenuation: false (pixels)
+        // and make them small but dense.
+        material.size = 12; // 12 screen pixels
+        material.sizeAttenuation = false;
+        material.color = new THREE.Color(0xFFFFFF); 
+        material.map = tex0;
+        material.alphaTest = 0.5; // Sharp cutout
 
+        // --- Shaders ---
         const injectStaticShader = (shader: any) => {
             shader.uniforms.uTime = { value: 0 };
             shader.vertexShader = `uniform float uTime;\n` + shader.vertexShader;
@@ -132,9 +209,10 @@ export default function AboutPage() {
                 '#include <begin_vertex>',
                 `
                 vec3 transformed = vec3(position);
-                float wind = sin(uTime * 1.0 + position.x * 0.2 + position.z * 0.2) * 0.3;
+                // Simple wind sway for trees
                 if (position.y > 1.0) {
-                    transformed.x += wind * (position.y - 1.0);
+                    float sway = sin(uTime * 1.5 + position.x * 0.1) * 0.1 * (position.y - 1.0);
+                    transformed.x += sway;
                 }
                 `
             );
@@ -147,31 +225,53 @@ export default function AboutPage() {
                 '#include <begin_vertex>',
                 `
                 vec3 transformed = vec3(position);
-                float angle = uTime * 0.4 + agentId * 45.67;
-                float walkRadius = 6.0;
-                transformed.x += cos(angle) * walkRadius;
-                transformed.z += sin(angle) * walkRadius;
-                transformed.y += abs(sin(uTime * 3.0 + agentId)) * 0.4;
+                
+                // Coordinated movement based on ID
+                float speed = 1.0;
+                float angle = uTime * 0.2 + agentId * 12.34;
+                float radius = 5.0;
+                
+                // Move in circles
+                float walkX = cos(angle) * radius;
+                float walkZ = sin(angle) * radius;
+                
+                transformed.x += walkX;
+                transformed.z += walkZ;
+                
+                // Bobbing (walking animation)
+                float bob = abs(sin(uTime * 5.0 + agentId)) * 0.3;
+                transformed.y += bob;
+                
+                // Face direction? (Hard with points, but we can squash/stretch)
                 `
             );
         };
 
-        const matStatic0 = baseMaterial.clone(); matStatic0.map = tex0;
-        matStatic0.onBeforeCompile = (s) => { injectStaticShader(s); (matStatic0 as any).userData.shader = s; };
-        const matStatic1 = baseMaterial.clone(); matStatic1.map = tex1;
-        matStatic1.onBeforeCompile = (s) => { injectStaticShader(s); (matStatic1 as any).userData.shader = s; };
-        const matAgent0 = baseMaterial.clone(); matAgent0.map = tex0;
-        matAgent0.onBeforeCompile = (s) => { injectAgentShader(s); (matAgent0 as any).userData.shader = s; };
-        const matAgent1 = baseMaterial.clone(); matAgent1.map = tex1;
-        matAgent1.onBeforeCompile = (s) => { injectAgentShader(s); (matAgent1 as any).userData.shader = s; };
+        const matStat0 = material.clone(); matStat0.map = tex0;
+        matStat0.onBeforeCompile = (s) => { injectStaticShader(s); (matStat0 as any).userData.shader = s; };
+        
+        const matStat1 = material.clone(); matStat1.map = tex1;
+        matStat1.onBeforeCompile = (s) => { injectStaticShader(s); (matStat1 as any).userData.shader = s; };
+
+        const matAg0 = material.clone(); matAg0.map = tex0;
+        matAg0.onBeforeCompile = (s) => { injectAgentShader(s); (matAg0 as any).userData.shader = s; };
+
+        const matAg1 = material.clone(); matAg1.map = tex1;
+        matAg1.onBeforeCompile = (s) => { injectAgentShader(s); (matAg1 as any).userData.shader = s; };
+
 
         const group = new THREE.Group();
-        group.add(new THREE.Points(staticGeo0, matStatic0));
-        group.add(new THREE.Points(staticGeo1, matStatic1));
-        group.add(new THREE.Points(agentGeo0, matAgent0));
-        group.add(new THREE.Points(agentGeo1, matAgent1));
+        group.add(new THREE.Points(geoStatic0, matStat0));
+        group.add(new THREE.Points(geoStatic1, matStat1));
+        group.add(new THREE.Points(geoAgent0, matAg0));
+        group.add(new THREE.Points(geoAgent1, matAg1));
+        
+        // Center the scene
+        group.position.y = -5;
         scene.add(group);
 
+
+        // --- Render Loop ---
         const mouse = new THREE.Vector2();
         window.addEventListener('mousemove', (e) => {
             mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -181,17 +281,25 @@ export default function AboutPage() {
         const clock = new THREE.Clock();
         const animate = () => {
             const time = clock.getElapsedTime();
-            [matStatic0, matStatic1, matAgent0, matAgent1].forEach((mat: any) => {
+            [matStat0, matStat1, matAg0, matAg1].forEach((mat: any) => {
                 if (mat.userData.shader) mat.userData.shader.uniforms.uTime.value = time;
             });
-            group.rotation.y = mouse.x * 0.1;
+            
+            // Isometric rotation control
+            group.rotation.y = Math.PI / 4 + mouse.x * 0.1;
+
             renderer.render(scene, camera);
             requestAnimationFrame(animate);
         };
         animate();
 
         const handleResize = () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
+            const aspect = window.innerWidth / window.innerHeight;
+            const d = 35;
+            camera.left = -d * aspect; 
+            camera.right = d * aspect;
+            camera.top = d; 
+            camera.bottom = -d;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         };
@@ -211,7 +319,6 @@ export default function AboutPage() {
                     ← Human Company
                 </Link>
             </div>
-
             <div ref={containerRef} className="w-full h-full" />
         </div>
     );
