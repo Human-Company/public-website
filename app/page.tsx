@@ -23,7 +23,7 @@ export default function Home() {
               Progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
             </p>
             <p>
-              This drives two areas of focus.
+              This drives our two areas of focus.
             </p>
 
             {/* Section 01 */}
