@@ -41,18 +41,18 @@ export default function Home() {
               {/* Section 01 */}
               <section className="space-y-[10px]">
                 <span className="text-[14px] leading-[20px] text-stone-400 block">01</span>
-                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">A scalable foundation</h2>
+                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Environments</h2>
                 <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
-                  Building the training grounds for the next generation of AI. Our infrastructure enables massive-scale reinforcement learning environments that mimic the complexity of the real world.
+                  Real work, formalized. We encode economically valuable tasks into high-fidelity training environments where agents learn by doing—starting with software engineering.
                 </p>
               </section>
 
               {/* Section 02 */}
               <section className="space-y-[10px]">
                 <span className="text-[14px] leading-[20px] text-stone-400 block">02</span>
-                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Human-aligned reward models</h2>
+                <h2 className="text-[20px] leading-[1.4] font-medium text-[#1a1a1a]">Curricula</h2>
                 <p className="text-stone-500 text-[16px] leading-[1.6] max-w-[460px]">
-                  Ensuring that agents learn from human feedback effectively. We are developing novel algorithms to align agent behavior with human intent through natural interaction.
+                  Tasks drawn from real economic activity—the work that matters, turned into high quality training signal.
                 </p>
 
                 <p className="text-stone-500 text-[16px] leading-[1.6]">
