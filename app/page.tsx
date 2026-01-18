@@ -26,10 +26,11 @@ export default function Home() {
                             <h1 className="font-[family-name:var(--font-playfair)] text-[42px] leading-[1.15] font-normal tracking-[-0.5px] mb-[32px] text-[#1a1a1a]">
                               Humans won’t judge intelligence. They’ll define the work that creates it.
                             </h1>
-                            <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">                  <p>
-                    We believe in a future where agents are lifelike. They will see, hear, and collaborate with us. RL infrastructure is key to unlocking this future.
-                  </p>
-                  <p className="font-medium text-[17px] leading-[1.6] text-[#1a1a1a]">
+                                          <div className="space-y-[20px] text-[17px] leading-[1.6] text-stone-500">
+                                            <p>
+                                              We believe progress in AI will come from encoding real work into environments where agents can learn. As models scale, humans remain responsible for defining the tasks, constraints, and ground truth that turn intelligence into economic reality.
+                                            </p>
+                                            <p className="font-medium text-[17px] leading-[1.6] text-[#1a1a1a]">
                     To start, we have two goals.
                   </p>
                 </div>
