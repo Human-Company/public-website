@@ -311,4 +311,4 @@ export default function AboutPage() {
             <div ref={containerRef} className="w-full h-full" />
         </div>
     );
-}
+} 
