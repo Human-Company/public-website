@@ -14,10 +14,10 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: "Human Company",
-  description: "Humans won't judge intelligence. They'll define the work that creates it.",
+  description: "RL gyms for agent training",
   openGraph: {
     title: "Human Company",
-    description: "Humans won't judge intelligence. They'll define the work that creates it.",
+    description: "RL gyms for agent training",
     url: "https://thehumancompany.ai",
     siteName: "Human Company",
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Human Company",
-    description: "Humans won't judge intelligence. They'll define the work that creates it.",
+    description: "RL gyms for agent training",
     images: ["/og-image.png"],
   },
 };
