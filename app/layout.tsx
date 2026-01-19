@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Playfair } from "next/font/google";
+import { Albert_Sans, Playfair } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const albertSans = Albert_Sans({
+  variable: "--font-albert-sans",
   subsets: ["latin"],
 });
 
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${playfair.variable} antialiased bg-[#f5f5f0] text-[#1a1a1a]`}
+        className={`${albertSans.variable} ${playfair.variable} antialiased bg-[#FFFFFF] text-[#0D0D52] font-sans`}
       >
         {children}
       </body>
