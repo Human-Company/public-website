@@ -82,7 +82,7 @@ export default function AboutPage() {
 
         // --- Color Palette ---
         const COLORS = {
-            background: '#f5f5f0',
+            background: '#FFFFFF',
             ocean: new THREE.Color('#4A7C3F').multiplyScalar(0.2), // Dark dim green
             land: new THREE.Color('#2D5A27'),
             highlight: new THREE.Color('#E8B84A'),
@@ -325,9 +325,9 @@ export default function AboutPage() {
     }, []);
 
     return (
-        <div className="relative w-full h-screen overflow-hidden bg-[#f5f5f0]">
+        <div className="relative w-full h-screen overflow-hidden bg-[#FFFFFF]">
             <div className="absolute top-8 left-8 z-10">
-                <Link href="/" className="font-semibold text-[15px] text-[#1a1a1a] hover:opacity-60 transition-opacity">
+                <Link href="/" className="font-semibold text-[15px] text-[#0D0D52] hover:opacity-60 transition-opacity">
                     ← Human Company
                 </Link>
             </div>
