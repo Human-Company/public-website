@@ -3,10 +3,10 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-neutral-200 flex items-start lg:items-center justify-center px-6 pt-24 pb-12 lg:p-24">
-      <div className="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[140px_1fr] gap-12 items-start">
+      <div className="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-12 items-start">
         {/* Left Sidebar - Header & Nav */}
         <div className="flex flex-col gap-1 text-[18px] lg:sticky lg:top-24">
-          <div className="font-bold mb-1">Human Company</div>
+          <div className="font-bold mb-1 whitespace-nowrap">Human Company</div>
           <nav className="flex flex-col gap-1">
 
             <a href="mailto:amar@thehumancompany.ai" className="opacity-50 hover:opacity-100 transition-opacity">Contact</a>
