@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Hedvig_Letters_Sans, Hedvig_Letters_Serif } from "next/font/google";
+import { Albert_Sans, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
 
-const hedvigSans = Hedvig_Letters_Sans({
-  weight: "400",
-  variable: "--font-hedvig-letters-sans",
+const albertSans = Albert_Sans({
+  variable: "--font-albert-sans",
   subsets: ["latin"],
 });
 
@@ -47,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${hedvigSans.variable} ${hedvigSerif.variable} antialiased bg-background text-foreground font-sans`}
+        className={`${albertSans.variable} ${hedvigSerif.variable} antialiased bg-background text-foreground font-sans`}
       >
         {children}
       </body>
