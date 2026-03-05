@@ -3,17 +3,23 @@
 :root {
   --background: #FFFFFF;
   --foreground: #0D0D52;
+  --muted-foreground: #666666;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-albert-sans);
-  --font-serif: var(--font-playfair);
+  --color-muted-foreground: var(--muted-foreground);
+  --font-sans: var(--font-hedvig-letters-sans);
+  --font-serif: var(--font-hedvig-letters-serif);
 }
 
 body {
   font-family: var(--font-sans);
   background-color: var(--background);
   color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }

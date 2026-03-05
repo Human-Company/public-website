@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Albert_Sans, Playfair } from "next/font/google";
+import { Hedvig_Letters_Sans, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
 
-const albertSans = Albert_Sans({
-  variable: "--font-albert-sans",
+const hedvigSans = Hedvig_Letters_Sans({
+  variable: "--font-hedvig-letters-sans",
   subsets: ["latin"],
 });
 
-const playfair = Playfair({
-  variable: "--font-playfair",
+const hedvigSerif = Hedvig_Letters_Serif({
+  variable: "--font-hedvig-letters-serif",
   subsets: ["latin"],
 });
 
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${albertSans.variable} ${playfair.variable} antialiased bg-[#FFFFFF] text-[#0D0D52] font-sans`}
+        className={`${hedvigSans.variable} ${hedvigSerif.variable} antialiased bg-background text-foreground font-sans`}
       >
         {children}
       </body>
