@@ -3,11 +3,13 @@ import { Hedvig_Letters_Sans, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
 
 const hedvigSans = Hedvig_Letters_Sans({
+  weight: "400",
   variable: "--font-hedvig-letters-sans",
   subsets: ["latin"],
 });
 
 const hedvigSerif = Hedvig_Letters_Serif({
+  weight: "400",
   variable: "--font-hedvig-letters-serif",
   subsets: ["latin"],
 });
