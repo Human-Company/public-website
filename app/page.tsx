@@ -9,6 +9,7 @@ export default function Home() {
           <div className="font-bold mb-1 whitespace-nowrap">Human Company</div>
           <nav className="flex flex-col gap-1">
 
+            <Link href="/about" className="opacity-50 hover:opacity-100 transition-opacity">About</Link>
             <a href="mailto:amar@thehumancompany.ai" className="opacity-50 hover:opacity-100 transition-opacity">Contact</a>
           </nav>
         </div>
